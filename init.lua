@@ -279,6 +279,11 @@ require('lazy').setup({
             local green = vim.api.nvim_get_hl(0, { name = "GruvboxGreen" }).fg
             local yellow = vim.api.nvim_get_hl(0, { name = "GruvboxYellow" }).fg
             local default_fg = vim.api.nvim_get_hl(0, { name = "GruvboxFg1" }).fg
+            local aqua = vim.api.nvim_get_hl(0, { name = "GruvboxAqua" }).fg
+            local orange = vim.api.nvim_get_hl(0, { name = "GruvboxOrange" }).fg
+            local purple = vim.api.nvim_get_hl(0, { name = "GruvboxPurple" }).fg
+            local gray = vim.api.nvim_get_hl(0, { name = "GruvboxGray" }).fg
+            local string_color = "#20a017"
             local red = "#fb4934"
 
             local hl = vim.api.nvim_set_hl
@@ -289,7 +294,7 @@ require('lazy').setup({
             hl(0, "StorageClass",          { fg = red })
             hl(0, "Identifier",            { fg = default_fg })
             hl(0, "@lsp.type.property",    { link = "@variable" })
-            hl(0, "String",                { fg = "#20a017" })
+            hl(0, "String",                { fg = string_color })
             hl(0, "@lsp.type.member",      { fg = green })
 
             -- cpp
@@ -327,6 +332,79 @@ require('lazy').setup({
 
             -- javascript
             hl(0, "javaScriptFunction", { fg = red })
+            hl(0, "javaScript", { fg = default_fg })
+
+            -- html/vue
+            hl(0, "@lsp.type.component.vue", { link = "@variable" })
+
+            -- Tag names — red to match keyword style
+            hl(0, "@tag",                    { fg = red })
+            hl(0, "@tag.builtin",            { fg = red })
+            hl(0, "htmlTagName",             { fg = purple })
+            hl(0, "htmlSpecialTagName",      { fg = purple })
+            hl(0, "htmlTag",                 { fg = gray })
+            hl(0, "htmlEndTag",              { fg = gray })
+
+            -- Attributes — orange, distinct from tags
+            hl(0, "@tag.attribute",          { fg = gray })
+            hl(0, "htmlArg",                 { fg = gray })
+
+            -- Tag delimiters (< > </ />) — muted gray
+            hl(0, "@tag.delimiter",          { fg = gray })
+
+            -- Attribute values — string green (already covered by String)
+            -- = sign — gray
+            hl(0, "htmlString",              { fg = string_color })
+
+            -- Special chars (&amp; etc) — purple
+            hl(0, "htmlSpecialChar",         { fg = purple })
+            hl(0, "@character.special",      { fg = purple })
+
+            -- Script/style tags — purple
+            hl(0, "htmlScriptTag",           { fg = purple })
+
+            -- Vue-specific
+            hl(0, "@punctuation.special",    { fg = orange })        -- {{ }} interpolation
+            hl(0, "@function.method",        { fg = green })         -- @click handlers
+            hl(0, "@variable.member",        { fg = aqua })          -- :prop bindings
+            hl(0, "@directive_name",         { fg = red })
+
+            -- css
+            hl(0, "cssClassName",              { fg = green })
+            hl(0, "cssClassNameDot",           { fg = green })
+            hl(0, "cssIdentifier",             { fg = green })
+            hl(0, "cssGridProp",               { fg = aqua })
+            hl(0, "cssMediaProp",               { fg = aqua })
+            hl(0, "cssDefinition",               { fg = aqua })
+            hl(0, "cssTextProp",               { fg = aqua })
+            hl(0, "cssAnimationProp",          { fg = aqua })
+            hl(0, "cssUIProp",                 { fg = aqua })
+            hl(0, "cssTransformProp",          { fg = aqua })
+            hl(0, "cssTransitionProp",         { fg = aqua })
+            hl(0, "cssPrintProp",              { fg = aqua })
+            hl(0, "cssBorderProp",              { fg = aqua })
+            hl(0, "cssPositioningProp",        { fg = aqua })
+            hl(0, "cssBoxProp",                { fg = aqua })
+            hl(0, "cssFontDescriptorProp",     { fg = aqua })
+            hl(0, "cssFlexibleBoxProp",        { fg = aqua })
+            hl(0, "cssBorderOutlineProp",      { fg = aqua })
+            hl(0, "cssBackgroundProp",         { fg = aqua })
+            hl(0, "cssMarginProp",             { fg = aqua })
+            hl(0, "cssListProp",               { fg = aqua })
+            hl(0, "cssTableProp",              { fg = aqua })
+            hl(0, "cssFontProp",               { fg = aqua })
+            hl(0, "cssPaddingProp",            { fg = aqua })
+            hl(0, "cssDimensionProp",          { fg = aqua })
+            hl(0, "cssRenderProp",             { fg = aqua })
+            hl(0, "cssColorProp",              { fg = aqua })
+            hl(0, "cssGeneratedContentProp",   { fg = aqua })
+            hl(0, "cssFunctionName",           { fg = green })
+            hl(0, "cssColor",                  { fg = purple })
+            hl(0, "cssImportant",              { fg = red })
+            hl(0, "cssBraces",                 { fg = gray })
+            hl(0, "cssSelectorOp",             { fg = gray })
+            hl(0, "cssSelectorOp2",            { fg = gray })
+            hl(0, "@property.css",             { fg = aqua })
 
             -- yaml
             hl(0, "yamlBlockMappingKey",    { link = "@variable" })
