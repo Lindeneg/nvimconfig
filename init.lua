@@ -299,7 +299,15 @@ vim.opt.rtp:prepend(lazypath)
 -- ============================================================================
 require("lazy").setup({
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
-	"folke/neodev.nvim",
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
 
 	{
 		"Lindeneg/gruvbox",
@@ -349,8 +357,10 @@ require("lazy").setup({
 			hl(0, "typescriptAmbientDeclaration", { fg = red })
 			hl(0, "typescriptGlobal", { fg = default_fg })
 			hl(0, "typescriptIdentifierName", { fg = default_fg })
+			hl(0, "typescriptInterfaceName", { fg = default_fg })
 			hl(0, "typescriptFuncCallArg", { link = "@variable" })
 			hl(0, "typescriptFileReaderProp", { link = "@variable" })
+			hl(0, "typescriptMember", { link = "@variable" })
 			hl(0, "typescriptCastKeyword", { fg = red })
 			hl(0, "typescriptPredefinedType", { fg = yellow })
 			hl(0, "typescriptProp", { link = "@variable" })
@@ -457,6 +467,11 @@ require("lazy").setup({
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
+            vim.api.nvim_create_autocmd('FileType', {
+              pattern = { 'prisma' },
+              callback = function() vim.treesitter.start() end,
+            })
+
 			require("nvim-treesitter").setup({
 				highlight = {
 					enable = true,
@@ -487,6 +502,7 @@ require("lazy").setup({
 				"vimdoc",
 				"query",
 				"gdscript",
+				"prisma",
 			})
 		end,
 	},
@@ -531,6 +547,8 @@ require("lazy").setup({
 				filesystem_watchers = {
 					ignore_dirs = {
 						"node_modules",
+						".cache",
+						"generated",
 						".next",
 						"cmake-*",
 						".vs",
@@ -806,4 +824,3 @@ require("lazy").setup({
 		},
 	},
 })
-
